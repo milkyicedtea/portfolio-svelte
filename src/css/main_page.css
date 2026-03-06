@@ -1,0 +1,344 @@
+@import "tailwindcss";
+@import './theme.css';
+
+/* ─── DARK VARIANT: triggers when .dark is present on an ancestor ─── */
+@custom-variant dark (&:where(.dark *, .dark));
+
+:global(*) {
+  @apply box-border m-0 p-0;
+}
+
+:global(body) {
+  @apply font-mono overflow-x-hidden;
+}
+
+.site {
+  --header-bg: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  @apply min-h-screen transition-[background,color] duration-300;
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* ─── NOISE OVERLAY ─── */
+.site::before {
+  content: '';
+  @apply fixed inset-0 pointer-events-none z-0 opacity-40;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+}
+
+/* ─── HEADER ─── */
+header {
+  @apply sticky top-0 z-50 backdrop-blur-lg border-b border-solid flex items-center justify-between h-14
+    bg-(--header-bg) border-border p-[0_clamp(1.5rem,5vw,4rem)]
+  ;
+}
+
+.header-left {
+  @apply flex items-center gap-2;
+}
+
+.bp-badge {
+  @apply text-[0.65rem] font-mono font-semibold px-[0.45rem] py-[0.15rem] rounded-md
+    border border-solid border-border bg-bg3 text-muted uppercase tracking-widest;
+}
+
+.logo {
+  @apply no-underline flex items-center gap-2 font-sans font-extrabold text-lg text-text tracking-tight;
+}
+
+.logo-dot {
+  @apply rounded-full w-2 h-2 bg-pink animate-[pulse_2.5s_ease-in-out_infinite];
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+nav {
+  @apply flex items-center gap-1;
+}
+
+nav a {
+  @apply no-underline text-[0.8rem] px-3 py-[0.4rem] rounded-md transition-[color,background]
+    duration-200 text-muted
+  ;
+}
+
+nav a:hover {
+  @apply text-text bg-surface;
+}
+
+/* ─── MAIN ─── */
+main {
+  @apply relative z-10 max-w-360 mx-auto flex flex-col gap-20
+    p-[clamp(3rem,8vw,6rem)_clamp(1.5rem,5vw,2rem)]
+  ;
+}
+
+/* ─── HERO ─── */
+.hero {
+  @apply flex flex-col gap-6 animate-[fadeUp_0.7s_ease_both];
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-badge {
+  @apply inline-flex items-center gap-2 text-[0.75rem] px-3 py-[0.3rem]
+    rounded-full w-fit border border-solid
+    bg-[color-mix(in_srgb,var(--color-pink)_12%,transparent)]
+    border-[color-mix(in_srgb,var(--color-pink)_30%,transparent)]
+    text-pink
+  ;
+}
+
+.hero-badge span {
+  @apply rounded-full w-1.5 h-1.5 bg-mint animate-[pulse_2s_ease-in-out_infinite];
+}
+
+.hero h1 {
+  @apply font-extrabold leading-[1.05] font-sans text-[clamp(2.4rem,6vw,4.2rem)] -tracking-[0.04em] text-text;
+}
+
+.hero h1 em {
+  @apply not-italic bg-[linear-gradient(135deg,var(--color-pink),var(--color-lavender),var(--color-sky))]
+    bg-clip-text text-transparent
+  ;
+}
+
+.hero-desc {
+  @apply text-base leading-[1.7] max-w-[90%] text-muted;
+}
+
+.hero-links {
+  @apply flex flex-wrap gap-3 mt-2;
+}
+
+.btn {
+  @apply inline-flex items-center gap-2 px-5 py-[0.6rem] rounded-lg text-[0.82rem] font-medium
+    no-underline transition-all duration-200 cursor-pointer border-none font-mono
+  ;
+}
+
+.btn-primary {
+  @apply bg-pink text-(--candy-black);
+}
+
+.btn-primary:hover {
+  @apply -translate-y-px bg-[color-mix(in_srgb,var(--color-pink)_85%,transparent)] shadow-[0_6px_20px_color-mix(in_srgb,var(--color-pink)_30%,transparent)];
+}
+
+.btn-ghost {
+  @apply border border-solid bg-surface text-text border-border;
+}
+
+.btn-ghost:hover {
+  @apply -translate-y-px border-lavender text-lavender;
+}
+
+/* ─── SECTION HEADER ─── */
+.section-header {
+  @apply flex items-center gap-4 mb-7;
+}
+
+.section-label {
+  @apply text-[0.7rem] font-semibold tracking-widest uppercase font-sans text-muted;
+}
+
+.section-line {
+  @apply flex-1 h-px bg-[linear-gradient(to_right,var(--color-border),transparent)];
+}
+
+/* ─── ABOUT ─── */
+.about {
+  @apply animate-[fadeUp_0.7s_0.1s_ease_both];
+}
+
+.about-grid {
+  @apply grid gap-6 grid-cols-2;
+}
+
+@media (max-width: 600px) {
+  .about-grid { @apply grid-cols-1; }
+}
+
+.about-card {
+  @apply border border-solid rounded-xl p-4 bg-bg2 border-border grid;
+  grid-template-rows: 2.5rem auto;
+}
+
+.about-card-top {
+  @apply flex items-center justify-between mb-2;
+}
+
+.about-card h3 {
+  @apply text-[0.85rem] font-semibold flex items-center gap-[0.4rem] font-sans text-lavender self-center;
+}
+
+.about-card p,
+.about-card ul {
+  @apply text-[0.82rem] leading-[1.75] text-muted gap-1;
+}
+
+.about-card ul {
+  @apply list-none flex flex-wrap gap-[0.4rem];
+}
+
+.tag {
+  @apply text-[0.72rem] px-[0.6rem] py-[0.2rem] rounded-[5px] border border-solid
+    transition-[border-color,color] duration-200 bg-bg3 border-border text-muted
+    flex items-center gap-1
+  ;
+}
+
+.tag:hover {
+  @apply border-mint text-mint;
+}
+
+/* ─── PROJECTS ─── */
+.projects {
+  @apply animate-[fadeUp_0.7s_0.2s_ease_both];
+}
+
+.projects-grid {
+  @apply grid gap-4 grid-cols-2;
+}
+
+@media (max-width: 600px) {
+  .projects-grid { @apply grid-cols-1; }
+}
+
+.project-card {
+  @apply border border-solid rounded-xl p-5 no-underline flex flex-col gap-3
+    transition-[border-color,transform,box-shadow] duration-200 relative overflow-hidden bg-bg2
+    border-border
+  ;
+}
+
+.project-card::before {
+  @apply absolute top-0 left-0 right-0 h-0.5 opacity-0 transition-opacity duration-200
+    bg-[linear-gradient(to_right,var(--color-pink),var(--color-lavender))]
+  ;
+  content: '';
+}
+
+.project-card:hover {
+  @apply -translate-y-0.75 border-border shadow-[0_12px_32px_color-mix(in_srgb,var(--color-pink)_8%,transparent)];
+}
+
+.project-card:hover::before {
+  @apply opacity-100;
+}
+
+.project-name {
+  @apply text-[0.95rem] font-bold flex items-center justify-between font-sans text-text;
+}
+
+.project-stars {
+  @apply text-[0.72rem] flex items-center gap-1 text-peach;
+}
+
+.project-desc {
+  @apply text-[0.8rem] leading-[1.6] text-muted;
+}
+
+.project-tags {
+  @apply flex flex-wrap gap-[0.3rem] mt-auto;
+}
+
+.ptag {
+  @apply text-[0.68rem] px-2 py-[0.15rem] rounded border border-solid text-lavender
+    bg-[color-mix(in_srgb,var(--color-lavender)_10%,transparent)]
+    border-[color-mix(in_srgb,var(--color-lavender)_25%,transparent)]
+  ;
+}
+
+/* ─── SOCIALS ─── */
+.socials {
+  @apply animate-[fadeUp_0.7s_0.2s_ease_both];
+}
+
+.socials-list {
+  @apply flex flex-col gap-2;
+}
+
+.social-item {
+  @apply flex items-center gap-4 px-[1.1rem] py-[0.85rem] border border-solid rounded-[10px]
+    no-underline transition-transform duration-200 bg-bg2 border-border text-text
+  ;
+}
+
+.social-item:hover {
+  @apply translate-x-1 border-mint bg-bg3;
+}
+
+.social-icon {
+  @apply text-base w-6 text-center text-mint;
+}
+
+.social-name {
+  @apply text-[0.82rem] font-semibold min-w-20 font-sans text-text;
+}
+
+.social-label {
+  @apply text-[0.78rem] text-muted;
+}
+
+.social-arrow {
+  @apply ml-auto text-[0.8rem] transition-[transform,color] duration-200 text-muted;
+}
+
+.social-item:hover .social-arrow {
+  @apply translate-x-0.75 text-mint;
+}
+
+/* ─── FOOTER ─── */
+footer {
+  @apply relative z-10 border-t border-solid flex items-center justify-between flex-wrap gap-3
+    border-border p-[1.5rem_clamp(1.5rem,5vw,4rem)]
+  ;
+}
+
+.footer-text {
+  @apply flex items-center gap-1 text-[0.75rem] text-muted;
+}
+
+.footer-text a {
+  @apply no-underline text-pink;
+}
+
+.footer-text a:hover {
+  @apply underline;
+}
+
+.footer-buttons {
+  @apply flex gap-[0.4rem] flex-wrap;
+}
+
+/* ─── DECORATIVE BG ─── */
+.bg-orbs {
+  @apply fixed inset-0 pointer-events-none z-0 overflow-hidden;
+}
+
+.orb {
+  @apply absolute rounded-full blur-[80px] opacity-[0.12];
+}
+
+.orb:where(.dark *) {
+  @apply opacity-[0.06];
+}
+
+.orb-1 {
+  @apply w-125 h-125 bg-pink -top-50 -left-25;
+}
+
+.orb-2 {
+  @apply w-100 h-100 bg-lavender top-[40%] -right-37.5;
+}
+
+.orb-3 {
+  @apply w-75 h-75 bg-mint -bottom-25 left-[30%];
+}

@@ -1,0 +1,36 @@
+@import 'tailwindcss';
+
+/* ─── THEME TOKENS ─── */
+@theme {
+  --candy-black: #1e0a1a;
+
+  /* Light mode (default) */
+  --color-bg:      #f8f4ff;
+  --color-bg2:     #f0ebfc;
+  --color-bg3:     #e8e0f8;
+  --color-surface: #ffffff;
+  --color-border:  #d4cce8;
+  --color-text:    #1e1a2e;
+  --color-muted:   #6b6080;
+  --color-pink:    #d060a0;
+  --color-lavender:#7060c8;
+  --color-mint:    #208878;
+  --color-peach:   #c87820;
+  --color-sky:     #2878c8;
+}
+
+/* Dark mode token overrides — scoped to .dark class */
+.dark {
+  --color-bg:       #0f0e14;
+  --color-bg2:      #181620;
+  --color-bg3:      #211f2e;
+  --color-surface:  #2a2638;
+  --color-border:   #3d3850;
+  --color-text:     #e8e4f0;
+  --color-muted:    #8b84a8;
+  --color-pink:     #f0a0c0;
+  --color-lavender: #b8a9e8;
+  --color-mint:     #8ae0c8;
+  --color-peach:    #f0c080;
+  --color-sky:      #a0c8f0;
+}

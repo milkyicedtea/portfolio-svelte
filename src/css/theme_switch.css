@@ -1,0 +1,13 @@
+@import 'tailwindcss';
+@import './theme.css';
+
+.theme-btn {
+  @apply w-9 h-9 rounded-lg cursor-pointer flex items-center justify-center text-base ml-2 shrink-0
+    transition-[background,border-color,transform] duration-200 border border-solid bg-(--color-surface)
+    border-(--color-border) text-(--color-text)
+  ;
+}
+
+.theme-btn:hover {
+  @apply bg-(--color-bg3) border-(--color-lavender) scale-105;
+}

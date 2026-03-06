@@ -1,0 +1,85 @@
+@import "tailwindcss";
+@import "./theme.css";
+
+.segmented-control {
+  @apply inline-flex items-center bg-bg3 border border-solid border-border rounded-lg p-0.75 gap-0.5 flex-wrap;
+}
+
+.seg-btn {
+  @apply text-[0.7rem] font-semibold p-[0.25rem_0.65rem] rounded-[5px] border border-solid border-transparent bg-transparent text-muted cursor-pointer
+    transition-[background_0.15s,color_0.15s] whitespace-nowrap
+  ;
+  font-family: inherit;
+}
+
+.seg-btn:hover:not(.active) {
+  @apply text-text bg-bg2;
+}
+
+.seg-btn.active {
+  @apply bg-surface text-lavender border-border font-semibold;
+}
+
+/* ─── COMPACT DROPDOWN ─── */
+
+.seg-dropdown {
+  @apply relative inline-block;
+}
+
+.seg-dropdown-trigger {
+  @apply inline-flex items-center gap-1.5 text-[0.7rem] font-semibold
+    px-2.5 py-2 rounded-lg border border-solid border-border
+    bg-bg3 text-lavender cursor-pointer whitespace-nowrap
+    transition-[border-color,background] duration-150
+    relative;
+  font-family: inherit;
+}
+
+/* invisible stack of all labels — sets the button width to the longest one */
+.seg-trigger-sizer {
+  @apply flex flex-col h-0 overflow-hidden pointer-events-none select-none;
+  visibility: hidden;
+}
+
+/* the actually visible label, positioned over the sizer */
+.seg-trigger-label {
+  @apply absolute left-2.5;
+}
+
+.seg-dropdown-trigger:hover {
+  @apply border-lavender bg-bg2;
+}
+
+.seg-chevron {
+  @apply text-[0.6rem] text-muted transition-transform duration-200;
+}
+
+.seg-chevron.open {
+  @apply rotate-180;
+}
+
+.seg-dropdown-list {
+  @apply absolute top-[calc(100%+0.25rem)] z-50 min-w-full
+    list-none p-1
+    border border-solid border-border rounded-lg
+    bg-surface shadow-[0_8px_24px_color-mix(in_srgb,#000_18%,transparent)];
+}
+
+.seg-dropdown-list li {
+  @apply list-none w-full;
+}
+
+.seg-dropdown-item {
+  @apply w-full text-left text-[0.7rem] font-semibold px-3 py-[0.3rem] rounded-md cursor-pointer
+    text-muted whitespace-nowrap transition-[background,color] duration-100
+    border-none bg-transparent;
+  font-family: inherit;
+}
+
+.seg-dropdown-item:hover {
+  @apply bg-bg3 text-text;
+}
+
+.seg-dropdown-item.active {
+  @apply text-lavender bg-[color-mix(in_srgb,var(--color-lavender)_10%,transparent)];
+}
