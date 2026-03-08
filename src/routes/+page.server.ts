@@ -1,9 +1,19 @@
 import type { PageServerLoad } from './$types'
-import {fetchProjects} from "$lib/server/github"
+import {fetchLatestCommit, fetchProjects} from "$lib/server/github"
 
 
 export const load: PageServerLoad = async (
   { fetch }
-) => fetchProjects(fetch)
+) => {
+  const [projects, latestCommit] = await Promise.all([
+    fetchProjects(fetch),
+    fetchLatestCommit(fetch)
+  ])
+
+  return {
+    projects,
+    latestCommit
+  }
+}
 
 

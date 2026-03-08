@@ -13,7 +13,7 @@
 </script>
 
 <button class="theme-btn" onclick={toggleTheme}>
-  {#if theme.theme === 'dark'}
+  {#if theme.resolvedTheme === 'dark'}
     <Icon icon="pixel:sun-solid"/>
   {:else}
     <Icon icon="pixel:moon-solid"/>

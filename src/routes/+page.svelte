@@ -119,9 +119,8 @@
       <div class="about-grid">
         <div class="about-card">
           <div class="about-card-top">
-            <h3><Icon icon="fa7-solid:contact-card" width="20"/> who i am</h3>
+            <h3><Icon icon="fa7-solid:contact-card" width="20"/>about me</h3>
           </div>
-
           <p>
             a developer who cares deeply about performance, privacy, and software that puts users first. when i'm not coding i'm probably playing some obscure rhythm game or fighting with AI.
           </p>
@@ -149,18 +148,30 @@
         </div>
         <div class="about-card">
           <div class="about-card-top">
-            <h3><Icon icon="fa7-solid:lightbulb" width="20"/> interests</h3>
+            <h3><Icon icon="fa7-solid:lightbulb" width="20"/>interests</h3>
           </div>
           <p>{interests.join(' · ')}</p>
         </div>
         <div class="about-card">
           <div class="about-card-top">
-            <h3>⌥ currently</h3>
+            <h3><Icon icon="fa7-solid:code-commit" width="20"/>latest activity</h3>
           </div>
-
-          <p>
-            working on some cool open source projects and looking for my next role. always happy to chat about interesting problems!
-          </p>
+            {#if data.latestCommit}
+              <a href={data.latestCommit.url} target="_blank" rel="noopener external" class="latest-commit">
+                <div class="commit-top">
+                  <Icon icon="fa7-solid:code-branch" width="12" class="commit-branch-icon"/>
+                  <span class="commit-branch">main</span>
+                  <code class="commit-sha">{data.latestCommit.sha}</code>
+                </div>
+                <code class="commit-message">{data.latestCommit.message}</code>
+                <div class="commit-meta">
+                  <span class="commit-repo">{data.latestCommit.repoFull}</span>
+                  <span class="commit-date">{data.latestCommit.date}</span>
+                </div>
+              </a>
+            {:else}
+              <p>no recent activity found.</p>
+            {/if}
         </div>
       </div>
     </section>

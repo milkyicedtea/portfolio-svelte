@@ -198,6 +198,36 @@ main {
   @apply border-mint text-mint;
 }
 
+.latest-commit {
+  @apply flex flex-col gap-1.5 p-3 rounded-lg no-underline transition-colors duration-200
+    border border-solid border-border bg-bg2
+  ;
+}
+
+.latest-commit:hover {
+  @apply border-lavender bg-bg3;
+}
+
+.commit-top {
+  @apply flex items-center gap-1.5;
+}
+
+.commit-branch {
+  @apply font-mono text-xs text-lavender;
+}
+
+.commit-sha {
+  @apply font-mono text-xs px-1.5 py-0.5 rounded text-muted bg-bg3;
+}
+
+.commit-message {
+  @apply font-mono text-sm truncate text-text;
+}
+
+.commit-meta {
+  @apply flex justify-between text-xs text-muted;
+}
+
 /* ─── PROJECTS ─── */
 .projects {
   @apply animate-[fadeUp_0.7s_0.2s_ease_both];
