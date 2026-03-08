@@ -101,7 +101,7 @@
     <section class="hero">
       <h1>hi, i'm <em>Alessandro</em>.<br/>i build things for the web.</h1>
       <p class="hero-desc">
-        I'm a {age}yo self-taught developer based in Italy 🇮🇹. I enjoy building simple but fast tools and applications for the web.
+        I'm a {age}yo self-taught developer based in Italy 🇮🇹. I enjoy building simple but fast open-core tools and applications for the web.
       </p>
       <div class="hero-links">
         <a href="#projects" onclick={(e) => scrollTo(e, '#projects')} class="btn btn-primary">take a look at my work <Icon icon="fa7-solid:arrow-down"/></a>

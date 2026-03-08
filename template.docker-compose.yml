@@ -1,0 +1,16 @@
+services:
+  portfolio:
+    build: .
+    image: milkyicedtea/portfolio
+    container_name: portfolio
+    env_file: .env
+    expose:
+      - 3000
+    restart: unless-stopped
+    networks:
+      - caddy_network
+
+# remove caddy_net in dev or if not needed
+networks:
+  caddy_net:
+    external: true
