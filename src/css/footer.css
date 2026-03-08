@@ -1,0 +1,25 @@
+@import 'tailwindcss';
+@import './theme.css';
+
+/* ─── FOOTER ─── */
+footer {
+  @apply relative z-10 border-t border-solid flex items-center justify-between flex-wrap gap-3
+    border-border p-[1.5rem_clamp(1.5rem,5vw,4rem)]
+  ;
+}
+
+.footer-text {
+  @apply flex items-center gap-1 text-[0.75rem] text-muted;
+}
+
+.footer-text a {
+  @apply no-underline text-pink;
+}
+
+.footer-text a:hover {
+  @apply underline;
+}
+
+.footer-buttons {
+  @apply flex gap-[0.4rem] flex-wrap;
+}

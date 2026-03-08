@@ -3,8 +3,12 @@ import type {Config} from "@sveltejs/kit"
 
 const config: Config = {
 	kit: {
-		adapter: adapter()
-	}
-};
+		adapter: adapter(),
+
+		alias: {
+			'$css': 'src/css'
+		}
+	},
+}
 
 export default config

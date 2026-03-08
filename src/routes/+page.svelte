@@ -3,10 +3,11 @@
   import Icon from "@iconify/svelte"
   import ThemeSwitch from '$lib/components/ThemeSwitch.svelte'
   import SegmentedControl from '$lib/components/SegmentedControl.svelte'
+  import Footer from "$lib/components/Footer.svelte"
   import { onMount } from "svelte"
-  import '../css/main_page.css'
   import { interests, socials, techs } from "$lib/config"
   import type { PageData } from './$types'
+  import '$css/main_page.css'
 
   let { data }: { data: PageData } = $props()
 
@@ -224,10 +225,5 @@
   </main>
 
   <!-- footer -->
-  <footer>
-    <span class="footer-text">
-      made with <Icon icon="fa7-regular:heart"/> using <a href="https://svelte.dev" target="_blank">svelte</a> ·
-      <a href="https://github.com/milkyicedtea/portfolio-svelte" target="_blank">source code</a>
-    </span>
-  </footer>
+  <Footer/>
 </div>

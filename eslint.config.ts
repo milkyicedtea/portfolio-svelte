@@ -1,19 +1,21 @@
-import path from 'node:path';
-import { includeIgnoreFile } from '@eslint/compat';
-import js from '@eslint/js';
-import svelte from 'eslint-plugin-svelte';
-import { defineConfig } from 'eslint/config';
-import globals from 'globals';
-import ts from 'typescript-eslint';
-import svelteConfig from './svelte.config.ts';
+import path from 'node:path'
+import { includeIgnoreFile } from '@eslint/compat'
+import js from '@eslint/js'
+import svelte from 'eslint-plugin-svelte'
+import { defineConfig } from 'eslint/config'
+import globals from 'globals'
+import ts from 'typescript-eslint'
+import svelteConfig from './svelte.config.ts'
+import {tanstackConfig} from "@tanstack/eslint-config"
 
-const gitignorePath = path.resolve(import.meta.dirname, '.gitignore');
+const gitignorePath = path.resolve(import.meta.dirname, '.gitignore')
 
 export default defineConfig(
 	includeIgnoreFile(gitignorePath),
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs.recommended,
+	...tanstackConfig,
 	{
 		languageOptions: { globals: { ...globals.browser, ...globals.node } },
 		rules: {
@@ -33,4 +35,4 @@ export default defineConfig(
 			}
 		}
 	}
-);
+)
