@@ -1,4 +1,5 @@
-import { repos, type GithubRepo } from '$lib/config'
+import type {GithubRepo} from '$lib/config'
+import { repos  } from '$lib/config'
 import { env } from '$env/dynamic/private'
 
 const githubHeaders: HeadersInit = {

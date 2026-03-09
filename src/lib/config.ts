@@ -1,4 +1,3 @@
-
 interface Tech {
   name: string
   icon: string
@@ -12,7 +11,7 @@ export interface GithubRepo {
   description: string | null
   html_url: string
   stargazers_count: number
-  topics: string[]
+  topics: Array<string>
   language: string | null
 }
 
