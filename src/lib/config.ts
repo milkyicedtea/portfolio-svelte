@@ -72,6 +72,12 @@ export const techs: Array<Tech> = [
     link: "https://docker.com"
   },
   {
+    name: "DragonflyDB",
+    icon: "/dragonflydb.svg",
+    category: ["databases"],
+    link: "https://dragonflydb.io"
+  },
+  {
     name: "Flutter",
     icon: "/flutter.svg",
     category: ["native"],
@@ -120,6 +126,12 @@ export const techs: Array<Tech> = [
     link: "https://react.dev"
   },
   {
+    name: "Redis",
+    icon: "/redis.svg",
+    category: ["databases"],
+    link: "https://redis.io"
+  },
+  {
     name: "Rust",
     icon: "/rust.svg",
     category: ["backend", "native"],
@@ -149,6 +161,12 @@ export const techs: Array<Tech> = [
     category: ["backend", "frontend"],
     link: "https://typescriptlang.org"
   },
+  {
+    name: "Valkey",
+    icon: "/valkey.svg",
+    category: ["databases"],
+    link: "https://valkey.io"
+  }
 ]
 
 export const repos: Array<`${string}/${string}`> = [
