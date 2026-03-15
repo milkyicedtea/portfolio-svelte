@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
-  import '$css/footer.css'
+  import '$css/portfolio/footer.css'
 </script>
 
 <footer>

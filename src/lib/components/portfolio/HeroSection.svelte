@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {age} from "$lib/age"
+  import { age } from "$lib/age"
   import { scrollTo } from "$lib/scrollUtils"
   import Icon from "@iconify/svelte"
 </script>

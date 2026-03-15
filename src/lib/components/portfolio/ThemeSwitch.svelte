@@ -1,7 +1,7 @@
 <script lang="ts">
-  import {useTheme} from "svelte-themes"
+  import { useTheme } from "svelte-themes"
   import Icon from "@iconify/svelte"
-  import '$css/theme_switch.css'
+  import '$css/portfolio/theme_switch.css'
 
   const theme = useTheme()
 

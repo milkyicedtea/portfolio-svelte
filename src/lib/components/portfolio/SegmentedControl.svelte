@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
-  import '$css/segmented_control.css'
+  import '$css/portfolio/segmented_control.css'
 
   interface Props {
     segments: string[]

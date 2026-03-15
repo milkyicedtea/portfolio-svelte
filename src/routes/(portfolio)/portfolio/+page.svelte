@@ -1,14 +1,14 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import AboutSection from "$lib/components/AboutSection.svelte"
-  import ContactSection from "$lib/components/ContactSection.svelte"
-  import Footer from "$lib/components/Footer.svelte"
-  import Header from "$lib/components/Header.svelte"
-  import HeroSection from "$lib/components/HeroSection.svelte"
-  import ProjectsSection from "$lib/components/ProjectsSection.svelte"
+  import AboutSection from "$lib/components/portfolio/AboutSection.svelte"
+  import ContactSection from "$lib/components/portfolio/ContactSection.svelte"
+  import Footer from "$lib/components/portfolio/Footer.svelte"
+  import Header from "$lib/components/portfolio/Header.svelte"
+  import HeroSection from "$lib/components/portfolio/HeroSection.svelte"
+  import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte"
   import { breakpointQueries } from "$lib/breakpointUtils"
   import type { PageData } from './$types'
-  import '$css/main_page.css'
+  import '$css/portfolio/main_page.css'
 
   let { data }: { data: PageData } = $props()
 

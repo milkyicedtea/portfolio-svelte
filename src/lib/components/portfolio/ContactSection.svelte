@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {socials} from "$lib/config"
+  import { socials } from "$lib/config"
   import Icon from "@iconify/svelte"
 </script>
 

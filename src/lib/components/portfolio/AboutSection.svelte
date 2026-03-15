@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { interests, techs } from "$lib/config"
-  import SegmentedControl from "$lib/components/SegmentedControl.svelte"
   import Icon from "@iconify/svelte"
+  import SegmentedControl from "$lib/components/portfolio/SegmentedControl.svelte"
+  import { interests, techs } from "$lib/config"
 
   let { currentBp, latestCommit } = $props()
 

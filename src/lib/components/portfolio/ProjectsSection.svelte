@@ -1,6 +1,6 @@
 <script lang="ts">
   import Icon from "@iconify/svelte"
-  import type {GithubRepo} from "$lib/config"
+  import type { GithubRepo } from "$lib/config"
 
   let { projects }: { projects: Array<GithubRepo> } = $props()
 </script>
