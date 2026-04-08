@@ -3,14 +3,12 @@
   import AboutSection from "$lib/components/AboutSection.svelte"
   import ContactSection from "$lib/components/ContactSection.svelte"
   import Footer from "$lib/components/Footer.svelte"
-  import Header from "$lib/components/Header.svelte"
   import HeroSection from "$lib/components/HeroSection.svelte"
   import ProjectsSection from "$lib/components/ProjectsSection.svelte"
-  import { breakpointQueries } from "$lib/breakpointUtils.ts"
-  import type { PageData } from '../../.svelte-kit/types/src/routes'
+  import { breakpointQueries } from "$lib/breakpointUtils"
   import '$css/main_page.css'
 
-  let { data }: { data: PageData } = $props()
+  let { data } = $props()
 
   let currentBp = $state<string>('')
 
@@ -35,9 +33,6 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
   </div>
-
-  <!-- header -->
-  <Header {currentBp} />
 
   <!-- main content -->
   <main>

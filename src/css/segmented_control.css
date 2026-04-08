@@ -37,8 +37,7 @@
 
 /* invisible stack of all labels — sets the button width to the longest one */
 .seg-trigger-sizer {
-  @apply flex flex-col h-0 overflow-hidden pointer-events-none select-none;
-  visibility: hidden;
+  @apply flex flex-col h-0 overflow-hidden pointer-events-none select-none invisible;
 }
 
 /* the actually visible label, positioned over the sizer */

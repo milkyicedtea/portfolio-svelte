@@ -26,53 +26,10 @@
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
 }
 
-/* ─── HEADER ─── */
-header {
-  @apply sticky top-0 z-50 backdrop-blur-lg border-b border-solid flex items-center justify-between h-14
-    bg-(--header-bg) border-border p-[0_clamp(1.5rem,5vw,4rem)]
-  ;
-}
-
-.header-left {
-  @apply flex items-center gap-2;
-}
-
-.bp-badge {
-  @apply text-[0.65rem] font-mono font-semibold px-[0.45rem] py-[0.15rem] rounded-md
-    border border-solid border-border bg-bg3 text-muted uppercase tracking-widest;
-}
-
-.logo {
-  @apply no-underline flex items-center gap-2 font-sans font-extrabold text-lg text-text tracking-tight;
-}
-
-.logo-dot {
-  @apply rounded-full w-2 h-2 bg-pink animate-[pulse_2.5s_ease-in-out_infinite];
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-nav {
-  @apply flex items-center gap-1;
-}
-
-nav a {
-  @apply no-underline text-[0.8rem] px-3 py-[0.4rem] rounded-md transition-[color,background]
-    duration-200 text-muted
-  ;
-}
-
-nav a:hover {
-  @apply text-text bg-surface;
-}
-
 /* ─── MAIN ─── */
 main {
   @apply relative z-10 max-w-360 mx-auto flex flex-col gap-20
-    p-[clamp(3rem,8vw,6rem)_clamp(1.5rem,5vw,2rem)]
+    p-[clamp(2rem,6vw,6rem)_clamp(1.5rem,5vw,2rem)]
   ;
 }
 
@@ -166,8 +123,7 @@ main {
 }
 
 .about-card {
-  @apply border border-solid rounded-xl p-4 bg-bg2 border-border grid;
-  grid-template-rows: 2.5rem auto;
+  @apply border border-solid rounded-xl p-4 bg-bg2 border-border grid grid-rows-[2.5rem_auto];
 }
 
 .about-card-top {
@@ -239,6 +195,13 @@ main {
 
 @media (max-width: 600px) {
   .projects-grid { @apply grid-cols-1; }
+
+  /* prevent box message from making inner box too big */
+  .commit-message {
+    white-space: normal;
+    overflow-wrap: anywhere;
+    text-overflow: clip;
+  }
 }
 
 .project-card {
