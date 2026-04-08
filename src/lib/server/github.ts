@@ -1,19 +1,63 @@
-import type {GithubRepo} from '$lib/config'
+import { Octokit } from '@octokit/rest'
+import type { GithubRepo } from '$lib/config'
 import { repos  } from '$lib/config'
 import { env } from '$env/dynamic/private'
 
-const githubHeaders: HeadersInit = {
-  'Accept': 'application/vnd.github+json',
-  'X-GitHub-Api-Version': '2022-11-28',
-  ...(env.GITHUB_TOKEN ? { 'Authorization': `Bearer ${env.GITHUB_TOKEN}` } : {}),
+const octokit = new Octokit({
+  auth: env.GITHUB_TOKEN || undefined,
+})
+
+type PushEvent = {
+  type: 'PushEvent'
+  payload: {
+    head: string
+  }
+  repo: {
+    name: string
+  }
+  created_at: string
 }
 
-export async function fetchProjects(fetchFn: typeof fetch): Promise<Array<GithubRepo>> {
+const isObjectRecord = (value: unknown): value is Record<string, unknown> => (
+  typeof value === 'object' && value !== null
+)
+
+const isPushEvent = (event: unknown): event is PushEvent => {
+  if (!isObjectRecord(event) || event.type !== 'PushEvent') return false
+
+  const payload = event.payload
+  const repo = event.repo
+  const createdAt = event.created_at
+
+  if (!isObjectRecord(payload) || !isObjectRecord(repo)) return false
+
+  return (
+    typeof payload.head === 'string'
+    && typeof repo.name === 'string'
+    && typeof createdAt === 'string'
+  )
+}
+
+export type LatestCommit = {
+  repo: string
+  repoFull: string
+  message: string
+  sha: string
+  url: string
+  date: string
+}
+
+export async function fetchProjects(): Promise<Array<GithubRepo>> {
   const results = await Promise.allSettled(
-    repos.map(repo =>
-      fetchFn(`https://api.github.com/repos/${repo}`, { headers: githubHeaders })
-        .then(r => r.ok ? r.json() as Promise<GithubRepo> : Promise.reject(r.status))
-    )
+    repos.map(async (repo) => {
+      const [owner, repoName] = repo.split('/')
+
+      const res = await octokit.repos.get({
+        owner,
+        repo: repoName
+      })
+      return res.data as GithubRepo
+    })
   )
 
   return results
@@ -21,32 +65,40 @@ export async function fetchProjects(fetchFn: typeof fetch): Promise<Array<Github
     .map(r => r.value)
 }
 
-export async function fetchLatestCommit(fetchFn: typeof fetch) {
-  const res = await fetchFn(
-    'https://api.github.com/users/milkyicedtea/events/public?per_page=30',
-    { headers: githubHeaders }
-  )
+export async function fetchLatestCommit(): Promise<LatestCommit | null> {
+  let events: Array<unknown>
 
-  if (!res.ok) return null
+  try {
+    const response = await octokit.activity.listPublicEventsForUser({
+      username: 'milkyicedtea',
+      per_page: 30
+    })
+    events = response.data
+  } catch {
+    return null
+  }
 
-  const events = await res.json()
-  const pushEvent = events.find((e: any) => e.type === 'PushEvent')
+  const pushEvent = events.find(isPushEvent)
   if (!pushEvent) return null
 
   const sha = pushEvent.payload.head
   const repoFull = pushEvent.repo.name
 
-  // optionally fetch the commit message
-  const commitRes = await fetchFn(
-    `https://api.github.com/repos/${repoFull}/commits/${sha}`,
-    { headers: githubHeaders }
-  )
-  const commitData = commitRes.ok ? await commitRes.json() : null
+  const [owner, repo] = repoFull.split('/')
+  if (!owner || !repo) return null
+
+  const commitResponse = await octokit.repos.getCommit({
+    owner,
+    repo,
+    ref: sha,
+  })
+  const message = commitResponse.data.commit.message.split('\n')[0] ?? ''
+
 
   return {
-    repo: repoFull.split('/')[1],
+    repo,
     repoFull,
-    message: commitData?.commit?.message?.split('\n')[0] ?? '',
+    message,
     sha: sha.slice(0, 7),
     url: `https://github.com/${repoFull}/commit/${sha}`,
     date: new Date(pushEvent.created_at).toLocaleDateString('en-GB', {

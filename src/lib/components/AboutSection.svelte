@@ -1,6 +1,7 @@
 <script lang="ts">
+  import { fade } from "svelte/transition"
   import Icon from "@iconify/svelte"
-  import SegmentedControl from "$lib/components/portfolio/SegmentedControl.svelte"
+  import SegmentedControl from "$lib/components/SegmentedControl.svelte"
   import { interests, techs } from "$lib/config"
 
   let { currentBp, latestCommit } = $props()

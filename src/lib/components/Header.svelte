@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ThemeSwitch from "$lib/components/portfolio/ThemeSwitch.svelte"
+  import ThemeSwitch from "$lib/components/ThemeSwitch.svelte"
   import { scrollTo } from "$lib/scrollUtils"
 
   let { currentBp }: { currentBp: string } = $props()

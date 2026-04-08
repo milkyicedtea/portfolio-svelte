@@ -1,6 +1,6 @@
 <script lang="ts">
   import  { SvelteTheme } from 'svelte-themes'
-  import '$css/portfolio/layout.css'
+  import '$css/layout.css'
 
 	let { children } = $props()
 </script>

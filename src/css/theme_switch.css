@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import './theme.css';
+@import "tailwindcss";
+@import "$css/theme.css";
 
 .theme-btn {
   @apply w-9 h-9 rounded-lg cursor-pointer flex items-center justify-center text-base ml-2 shrink-0

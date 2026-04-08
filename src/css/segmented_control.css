@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "./theme.css";
+@import "$css/theme.css";
 
 .segmented-control {
   @apply inline-flex items-center bg-bg3 border border-solid border-border rounded-lg p-0.75 gap-0.5 flex-wrap;

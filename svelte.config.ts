@@ -1,5 +1,5 @@
 import adapter from 'svelte-adapter-bun'
-import type {Config} from "@sveltejs/kit"
+import type { Config } from "@sveltejs/kit"
 
 const config: Config = {
 	kit: {
