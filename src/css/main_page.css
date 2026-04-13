@@ -9,14 +9,14 @@
 }
 
 :global(body) {
-  @apply font-mono overflow-x-hidden;
+  @apply font-mono overflow-x-clip;
 }
 
 .site {
   --header-bg: color-mix(in srgb, var(--color-bg) 85%, transparent);
-  @apply min-h-screen transition-[background,color] duration-300;
-  background: var(--color-bg);
-  color: var(--color-text);
+  @apply min-h-screen transition-[background,color] duration-300
+    bg-bg text-text
+  ;
 }
 
 /* ─── NOISE OVERLAY ─── */
@@ -184,69 +184,12 @@ main {
   @apply flex justify-between text-xs text-muted;
 }
 
-/* ─── PROJECTS ─── */
-.projects {
-  @apply animate-[fadeUp_0.7s_0.2s_ease_both];
-}
-
-.projects-grid {
-  @apply grid gap-4 grid-cols-2;
-}
 
 @media (max-width: 600px) {
-  .projects-grid { @apply grid-cols-1; }
-
   /* prevent box message from making inner box too big */
   .commit-message {
-    white-space: normal;
-    overflow-wrap: anywhere;
-    text-overflow: clip;
+    @apply whitespace-normal wrap-anywhere text-clip
   }
-}
-
-.project-card {
-  @apply border border-solid rounded-xl p-5 no-underline flex flex-col gap-3
-    transition-[border-color,transform,box-shadow] duration-200 relative overflow-hidden bg-bg2
-    border-border
-  ;
-}
-
-.project-card::before {
-  @apply absolute top-0 left-0 right-0 h-0.5 opacity-0 transition-opacity duration-200
-    bg-[linear-gradient(to_right,var(--color-pink),var(--color-lavender))]
-  ;
-  content: '';
-}
-
-.project-card:hover {
-  @apply -translate-y-0.75 border-border shadow-[0_12px_32px_color-mix(in_srgb,var(--color-pink)_8%,transparent)];
-}
-
-.project-card:hover::before {
-  @apply opacity-100;
-}
-
-.project-name {
-  @apply text-[0.95rem] font-bold flex items-center justify-between font-sans text-text;
-}
-
-.project-stars {
-  @apply text-[0.72rem] flex items-center gap-1 text-peach;
-}
-
-.project-desc {
-  @apply text-[0.8rem] leading-[1.6] text-muted;
-}
-
-.project-tags {
-  @apply flex flex-wrap gap-[0.3rem] mt-auto;
-}
-
-.ptag {
-  @apply text-[0.68rem] px-2 py-[0.15rem] rounded border border-solid text-lavender
-    bg-[color-mix(in_srgb,var(--color-lavender)_10%,transparent)]
-    border-[color-mix(in_srgb,var(--color-lavender)_25%,transparent)]
-  ;
 }
 
 /* ─── SOCIALS ─── */

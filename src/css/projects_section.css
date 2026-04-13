@@ -1,0 +1,113 @@
+@import "tailwindcss";
+@import "$css/theme.css";
+
+.projects {
+  @apply animate-[fadeUp_0.7s_0.2s_ease_both];
+}
+
+/* ── Track ───────────────────────────────────────────────────────────────── */
+.swiper-track {
+  @apply flex gap-4 overflow-x-auto snap-mandatory pt-1 pb-8 px-6
+    m-0 overflow-scroll scroll-p-12
+  ;
+  scrollbar-width: none;
+}
+
+.swiper-track::-webkit-scrollbar {
+  @apply hidden;
+}
+
+/* ── Card wrapper ────────────────────────────────────────────────────────── */
+.project-card-wrap {
+  @apply flex-[0_0_calc(50%-0.5rem)] snap-align-none snap-always;
+}
+
+/* Desktop snaps by page: each page starts on odd cards (1, 3, 5...). */
+.project-card-wrap:nth-child(odd) {
+  @apply snap-start;
+}
+
+@media (max-width: 600px) {
+  .project-card-wrap {
+    @apply flex-[0_0_100%] snap-start;
+  }
+}
+
+/* ── Card ────────────────────────────────────────────────────────────────── */
+.project-card {
+  @apply h-full border border-solid rounded-xl p-5 no-underline flex flex-col gap-3
+    relative overflow-hidden bg-bg2 border-border
+    transform transition-all duration-200 ease-out;
+}
+
+.project-card::before {
+  @apply absolute top-0 left-0 right-0 h-0.5 opacity-0 transition-opacity duration-200
+    bg-[linear-gradient(to_right,var(--color-pink),var(--color-lavender))];
+  content: '';
+}
+
+.project-card:hover {
+  @apply shadow-[0_12px_32px_color-mix(in_srgb,var(--color-pink)_8%,transparent)]
+    -translate-y-0.75;
+}
+
+.project-card:hover::before {
+  @apply opacity-100;
+}
+
+.project-name {
+  @apply text-[0.95rem] font-bold flex items-center justify-between font-sans text-text;
+}
+
+.project-stars {
+  @apply text-[0.72rem] flex items-center gap-1 text-peach;
+}
+
+.project-desc {
+  @apply text-[0.8rem] leading-[1.6] text-muted;
+}
+
+.project-tags {
+  @apply flex flex-wrap gap-[0.3rem] mt-auto;
+}
+
+.ptag {
+  @apply text-[0.68rem] px-2 py-[0.15rem] rounded border border-solid text-lavender
+    bg-[color-mix(in_srgb,var(--color-lavender)_10%,transparent)]
+    border-[color-mix(in_srgb,var(--color-lavender)_25%,transparent)]
+  ;
+}
+
+/* ── Arrows (inline in section-header) ──────────────────────────────────── */
+.swiper-arrows {
+  @apply flex gap-2 shrink-0;
+}
+
+.swiper-btn {
+  @apply inline-flex items-center justify-center w-7 h-7 rounded-[50%] border border-solid border-border
+    bg-bg2 text-text cursor-pointer transition-[border-color_0.2s,color_0.2s,opacity_0.2s]
+  ;
+}
+
+.swiper-btn:hover:not(:disabled) {
+  @apply border-lavender text-lavender;
+}
+
+.swiper-btn:disabled {
+  @apply opacity-25 cursor-default;
+}
+
+/* ── Dots ────────────────────────────────────────────────────────────────── */
+.swiper-dots {
+  @apply flex justify-center gap-[0.4rem] mt-4;
+}
+
+.dot {
+  @apply w-[.4rem] h-[.4rem] border-none rounded-[50%] p-0 bg-border cursor-pointer
+    transition-[background_0.2s_transform_0.2s]
+  ;
+}
+
+.dot-active {
+  @apply bg-lavender transform-[scale(1.4)];
+}

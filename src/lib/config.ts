@@ -15,6 +15,8 @@ export interface GithubRepo {
   language: string | null
 }
 
+type Repo = `${string}/${string}`
+
 interface Social {
   name: string
   icon: string
@@ -169,11 +171,13 @@ export const techs: Array<Tech> = [
   }
 ]
 
-export const repos: Array<`${string}/${string}`> = [
-  "milkyicedtea/SecretKeeper",
+export const repos: Array<Repo> = [
   "milkyicedtea/proxy-rs",
-  "milkyicedtea/BlackFiles",
+  "milkyicedtea/PasteIt",
   "milkyicedtea/mldy",
+  "milkyicedtea/SecretKeeper",
+  "milkyicedtea/WakeItUp",
+  "milkyicedtea/BlackFiles",
 ]
 
 export const interests: Array<string> = [
